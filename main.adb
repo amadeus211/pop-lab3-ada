@@ -8,7 +8,7 @@ procedure Consumer_Producer is
    package String_Lists is new Indefinite_Doubly_Linked_Lists (String);
    use String_Lists;
 
-   procedure Starter (Storage_Size : in Integer; Item_Numbers : in Integer) is
+   procedure Starter (Storage_Size : in Integer) is
       Storage : List;
       Full   : Counting_Semaphore (Storage_Size, Default_Ceiling);
       Empty  : Counting_Semaphore (0, Default_Ceiling);
@@ -71,9 +71,9 @@ procedure Consumer_Producer is
 
       end Producer;
 
-      Consumers : array (1..3) of Consumer;
-      Producers :array (1..3) of Producer;
-      Items_to_add:array(1..3) of Integer:=(3,7,10);
+      Consumers : array (1..5) of Consumer;
+      Producers :array (1..5) of Producer;
+      Items_to_add:array(1..5) of Integer:=(1,2,3,5,5);
    begin
       for i in  Consumers'Range loop
          Consumers(i).Start(Items_to_add(i));
@@ -82,5 +82,5 @@ procedure Consumer_Producer is
    end Starter;
 
 begin
-   Starter (6, 24);
+   Starter (7);
 end Consumer_Producer;
